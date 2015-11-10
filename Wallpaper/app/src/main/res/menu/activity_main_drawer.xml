@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_0"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="热门推荐"/>
+        <item
+            android:id="@+id/nav_1"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="风景"/>
+        <item
+            android:id="@+id/nav_2"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="美女"/>
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="动漫"/>
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@android:drawable/ic_menu_share"
+                android:title="反馈"/>
+            <item
+                android:id="@+id/nav_shengming"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="声明"/>
+            <item
+                android:id="@+id/nav_back"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="退出"/>
+        </menu>
+    </item>
+
+</menu>
