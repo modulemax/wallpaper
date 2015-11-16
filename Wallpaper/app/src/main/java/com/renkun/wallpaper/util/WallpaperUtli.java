@@ -80,7 +80,6 @@ public class WallpaperUtli {
                 context.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("set","xiazaierro");
                         Toast.makeText(context.getApplicationContext(), "保存在失败", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -94,9 +93,9 @@ public class WallpaperUtli {
                 FileOutputStream fos = null;
                 try {
                     is = response.body().byteStream();
-                    new File(getSDPath()+"/wallpaper").mkdir();
-                    final File file = new File(getSDPath() + "/mntp/", fileName);
-                    Log.d("set", file.toString());
+                    File dir=new File(getSDPath()+"/wallpaper");
+                    if (!dir.isDirectory())dir.mkdir();
+                    final File file = new File(dir.getPath() + File.separator, fileName);
                     fos = new FileOutputStream(file);
                     while ((len = is.read(buf)) != -1) {
                         fos.write(buf, 0, len);
@@ -106,12 +105,10 @@ public class WallpaperUtli {
                     context.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context, "保存在" + file.getPath(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "保存在wallpaper目录下", Toast.LENGTH_LONG).show();
                         }
                     });
-
                 } catch (IOException e) {
-
                 } finally {
                     try {
                         if (is != null) is.close();
@@ -135,7 +132,6 @@ public class WallpaperUtli {
         {
             sdDir = Environment.getExternalStorageDirectory();//获取跟目录
         }
-        Log.d("set",sdDir.toString());
         return sdDir.toString();
 
     }

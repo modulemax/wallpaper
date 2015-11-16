@@ -13,9 +13,21 @@ android {
     }
     buildTypes {
         release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable true
+            zipAlignEnabled true
+            shrinkResources true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            debuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' }
     }
 }
 
@@ -23,11 +35,12 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:design:23.0.1'
-    compile 'com.android.support:recyclerview-v7:22.+'
-    compile 'com.android.support:cardview-v7:22.+'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:cardview-v7:22.2.1'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.commit451:PhotoView:1.2.4'
     compile files('libs/gson-2.2.4.jar')
     compile files('libs/picasso-2.5.2.jar')
     compile files('libs/YoumiSdk_v5.3.3_2015-10-29.jar')
+    compile files('libs/umeng-analytics-v5.6.1.jar')
 }

@@ -1,0 +1,93 @@
+<LinearLayout
+    android:id="@+id/note_bg_color_selector"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="invisible"
+    android:gravity="center">
+
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+        android:id="@+id/iv_bg_red_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_red"
+        />
+
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_orange_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_orange"
+        />
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_yellow_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_yellow"
+        />
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_green_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_green"
+        />
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_cyan_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:bg_color="@color/colorPrimaryDark_cyan"/>
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_blue_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_blue"/>
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_red_purple"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_purple"/>
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_pink_select"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_pink"/>
+    <com.renkun.wallpaper.ui.view.ThemeSelect
+        android:clickable="true"
+
+        android:layout_marginLeft="8dp"
+        android:id="@+id/iv_bg_red_brown"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:bg_color="@color/colorPrimaryDark_red"/>
+</LinearLayout>

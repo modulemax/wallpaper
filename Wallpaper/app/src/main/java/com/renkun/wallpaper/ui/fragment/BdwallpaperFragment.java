@@ -1,5 +1,6 @@
 package com.renkun.wallpaper.ui.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -57,7 +58,6 @@ public class BdwallpaperFragment extends Fragment implements
         this.tag3 = tag3;
         this.ic = ic;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,18 +69,18 @@ public class BdwallpaperFragment extends Fragment implements
         mRecyclerView= (RecyclerView) view.findViewById(R.id.recyler_view);
         mSwipeRefreshLayout= (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, android.R.color.holo_orange_light, android.R.color.holo_green_light, android.R.color.holo_red_light);
         initView(view);
         loadFirst();
         return view;
     }
-
     private void initView(View view) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         mBdImgRecyclerViewAdapter=new BdImgRecyclerViewAdapter(getActivity(),this);
         mRecyclerView.setAdapter(mBdImgRecyclerViewAdapter);
     }
     private void loadFirst() {
+        if (!mSwipeRefreshLayout.isRefreshing())mSwipeRefreshLayout.setRefreshing(true);
         pn = 0;
         String url = String.format(Api.BD_HTTP, pn*rn, rn, col ,tag, tag3,width,height,ic,
                 ie,oe,fr,p,t);

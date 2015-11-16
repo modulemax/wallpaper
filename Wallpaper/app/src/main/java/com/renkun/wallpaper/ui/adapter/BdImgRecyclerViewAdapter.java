@@ -13,6 +13,7 @@ import com.renkun.wallpaper.R;
 import com.renkun.wallpaper.data.Bdimg;
 import com.renkun.wallpaper.ui.activity.PhotoDetail;
 import com.renkun.wallpaper.ui.fragment.BdwallpaperFragment;
+import com.renkun.wallpaper.util.Screenutil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,16 +25,14 @@ import java.util.ArrayList;
  * Description  :
  */
 public class BdImgRecyclerViewAdapter extends RecyclerView.Adapter<BdImgRecyclerViewAdapter.ViewHolder> {
-    private int[] colors = {R.color.color_0, R.color.color_1, R.color.color_2, R.color.color_3,
-            R.color.color_4, R.color.color_5, R.color.color_6, R.color.color_7,
-            R.color.color_8, R.color.color_9,};
-
     public final Context mContext;
     public ArrayList<Bdimg.DATA> data;
     private BdwallpaperFragment mBdwallpaperFragment;
+    int[] i;
     public BdImgRecyclerViewAdapter(Context mContext,BdwallpaperFragment fragment) {
         this.mContext = mContext;
         mBdwallpaperFragment=fragment;
+        i= Screenutil.getScreenHeightANDheight(mContext);
     }
 
     @Override
@@ -44,11 +43,11 @@ public class BdImgRecyclerViewAdapter extends RecyclerView.Adapter<BdImgRecycler
 
     @Override
     public void onBindViewHolder(BdImgRecyclerViewAdapter.ViewHolder holder, int position) {
-        holder.mImageView.setBackgroundColor(mContext.getResources().getColor(colors[position % (colors.length)]));
+        //holder.mImageView.setBackgroundColor(mContext.getResources().getColor(colors[position % (colors.length)]));
         Picasso.with(mContext)
                 .load(getUrl(data.get(position)))
                 .centerInside()
-                .resize(720, 1280)
+                .resize(i[0], i[1])
                 .into(holder.mImageView);
         if (position==data.size()-2){mBdwallpaperFragment.loadnext();}
     }
@@ -60,7 +59,6 @@ public class BdImgRecyclerViewAdapter extends RecyclerView.Adapter<BdImgRecycler
 
     public  class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImageView;
-
         public ViewHolder(View view) {
             super(view);
             mImageView= (ImageView) view.findViewById(R.id.pic);

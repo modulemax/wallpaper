@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        >
         <item
             android:id="@+id/nav_0"
             android:icon="@android:drawable/ic_menu_camera"
@@ -9,18 +9,18 @@
         <item
             android:id="@+id/nav_1"
             android:icon="@android:drawable/ic_menu_gallery"
-            android:title="风景"/>
+            android:title="美丽风景"/>
         <item
             android:id="@+id/nav_2"
             android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="美女"/>
+            android:title="漂亮菇凉"/>
         <item
             android:id="@+id/nav_manage"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="动漫"/>
+            android:title="动漫天下"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="常规">
         <menu>
             <item
                 android:id="@+id/nav_about"

@@ -1,5 +1,6 @@
 package com.renkun.wallpaper.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -20,20 +21,20 @@ import android.widget.Toast;
 
 import com.renkun.wallpaper.R;
 import com.renkun.wallpaper.data.Api;
-import com.renkun.wallpaper.data.OkHttpClientManager;
 import com.renkun.wallpaper.ui.adapter.FragmentAdapter;
 import com.renkun.wallpaper.ui.fragment.BdwallpaperFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,View.OnClickListener{
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private Toolbar toolbar;
     private int CLASSFIY;
+    private int mThemeId = -1; // 皮肤主题ID，默认-1 不处理
 
     private FragmentAdapter mFragmentAdapter;
     public MainActivity() {
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getInt("theme", -1) != -1) {// 读取皮肤主题ID，-1 不处理
+                mThemeId = savedInstanceState.getInt("theme");
+                MainActivity.this.setTheme(mThemeId);  //设置主题皮肤
+            }
+        }
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +63,19 @@ public class MainActivity extends AppCompatActivity
 
         mViewPager= (ViewPager) findViewById(R.id.view_pager);
         mTabLayout= (TabLayout) findViewById(R.id.tab_layout);
+
         swichClassfiy(0);
+
+        findViewById(R.id.iv_bg_red_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_orange_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_yellow_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_green_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_cyan_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_blue_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_red_purple).setOnClickListener(this);
+        findViewById(R.id.iv_bg_pink_select).setOnClickListener(this);
+        findViewById(R.id.iv_bg_red_brown).setOnClickListener(this);
+
     }
 
     @Override
@@ -83,9 +102,13 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//            drawer.openDrawer(GravityCompat.START);
+//            View view=findViewById(R.id.theme_select);
+//            view.setVisibility(View.VISIBLE);
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -142,6 +165,24 @@ public class MainActivity extends AppCompatActivity
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(mFragmentAdapter);
     }
+
+    @Override
+    public void onClick(View v) {
+        int id=v.getId();
+        switch (id){
+            case R.id.iv_bg_red_select:onTheme(R.style.AppColor_red);break;
+            case R.id.iv_bg_orange_select:onTheme(R.style.AppColor_orange);break;
+            case R.id.iv_bg_yellow_select:onTheme(R.style.AppColor_yellow);break;
+            case R.id.iv_bg_green_select:onTheme(R.style.AppColor_green);break;
+            case R.id.iv_bg_cyan_select:onTheme(R.style.AppColor_cyan);break;
+            case R.id.iv_bg_blue_select:onTheme(R.style.AppColor_blue);break;
+            case R.id.iv_bg_red_purple:onTheme(R.style.AppColor_purple);break;
+            case R.id.iv_bg_pink_select:onTheme(R.style.AppColor_pink);break;
+            case R.id.iv_bg_red_brown:onTheme(R.style.AppColor_brown);break;
+            default:break;
+        }
+    }
+
     /**
      * viewpager .切换动画
      */
@@ -203,5 +244,26 @@ public class MainActivity extends AppCompatActivity
                 }
             }, 2000);
         }
+    }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+    // 设置主题，并重建
+    private void onTheme(int iThemeId){
+        mThemeId = iThemeId;
+        Intent intent=new Intent(MainActivity.this,MainActivity.class);
+        intent.setPackage(getPackageName());
+        this.recreate();
+    }
+    // 保存主题ID，onCreate 时读取主题
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("theme", mThemeId);
     }
 }

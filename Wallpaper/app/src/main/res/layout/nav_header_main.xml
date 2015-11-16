@@ -3,7 +3,6 @@
               android:layout_width="match_parent"
               android:layout_height="@dimen/nav_header_height"
               android:background="@drawable/side_nav_bar"
-              android:paddingBottom="@dimen/activity_vertical_margin"
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
@@ -15,20 +14,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/ic_launcher"
+        android:layout_marginBottom="-10dp"
+        android:src="@drawable/ic"
         android:id="@+id/imageView"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingTop="10dp"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-    <TextView
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="一张壁纸，一种态度"
-        android:id="@+id/textView"/>
-
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="好壁纸，好心情"/>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/theme_select"
+            layout="@layout/view_theme_sleect"/>
+    </RelativeLayout>
 </LinearLayout>

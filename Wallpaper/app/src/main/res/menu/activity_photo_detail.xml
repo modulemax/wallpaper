@@ -4,7 +4,6 @@
       tools:context=".MainActivity">
     <item android:id="@+id/action_back"
           android:title="返回"
-
           android:orderInCategory="100"
           app:showAsAction="always"/>
 </menu>

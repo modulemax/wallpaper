@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.renkun.wallpaper.R;
@@ -30,13 +31,12 @@ public class PhotoDetail extends AppCompatActivity {
         desc = intent.getStringExtra("desc");
         url = intent.getStringExtra("url");
         getSupportActionBar().setTitle(desc);
-        PhotoView photoView = (PhotoView) findViewById(R.id.iv_photo);
+        ImageView photoView = (ImageView) findViewById(R.id.iv_photo);
         Picasso.with(this)
                 .load(url)
                 .config(Bitmap.Config.ARGB_8888)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                 .into(photoView);
-
         TextView save= (TextView) findViewById(R.id.save);
         TextView wallpaper= (TextView) findViewById(R.id.wallpaper);
         wallpaper.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +48,6 @@ public class PhotoDetail extends AppCompatActivity {
                             public void onClick(View v) {
                                 WallpaperUtli.setBitmap(PhotoDetail.this,url);
                                 Snackbar.make(v, "正在设置。。", Snackbar.LENGTH_LONG).show();
-
                             }
                         }).show();
             }
